@@ -21,7 +21,7 @@ namespace listview
             listView1.Bounds = new Rectangle(new Point(10, 10), new Size(300, 200));
 
             // Set the view to show details.
-            listView1.View = View.Details;
+           // listView1.View = View.Details;
             // Allow the user to edit item text.
             listView1.LabelEdit = true;
             // Allow the user to rearrange columns.
