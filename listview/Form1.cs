@@ -17,8 +17,16 @@ namespace listview
             InitializeComponent();
             //ListView listView1 = new ListView();
             // Create a new ListView control.
+            List_initlize();
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.Text = "Listview";
+           
+        }
+        public void List_initlize()
+        {
             ListView listView1 = new ListView();
-            listView1.Bounds = new Rectangle(new Point(10, 10), new Size(300, 200));
+            listView1.Bounds = new Rectangle(new Point(10, 10), new Size(500, 500));
 
             // Set the view to show details.
             listView1.View = View.Details;
@@ -55,30 +63,29 @@ namespace listview
 
             // Create columns for the items and subitems.
             // Width of -2 indicates auto-size.
-            listView1.Columns.Add("Item Column", -2, HorizontalAlignment.Left);
-            listView1.Columns.Add("Column 2", -2, HorizontalAlignment.Left);
-            listView1.Columns.Add("Column 3", -2, HorizontalAlignment.Left);
+            listView1.Columns.Add("Item Column", -2, HorizontalAlignment.Center);
+            listView1.Columns.Add("Column 2", -2, HorizontalAlignment.Center);
+            listView1.Columns.Add("Column 3", -2, HorizontalAlignment.Center);
             listView1.Columns.Add("Column 4", -2, HorizontalAlignment.Center);
-
+            listView1.Columns.Add("Column 5", -2, HorizontalAlignment.Center);
             //Add the items to the ListView.
             listView1.Items.AddRange(new ListViewItem[] { item1, item2, item3 });
 
-            // Create two ImageList objects.
-            ImageList imageListSmall = new ImageList();
-            ImageList imageListLarge = new ImageList();
-
-            // Initialize the ImageList objects with bitmaps.
-           // imageListSmall.Images.Add(Bitmap.FromFile("C:\\MySmallImage1.bmp"));
-           // imageListSmall.Images.Add(Bitmap.FromFile("C:\\MySmallImage2.bmp"));
-         //   imageListLarge.Images.Add(Bitmap.FromFile("C:\\MyLargeImage1.bmp"));
-          //  imageListLarge.Images.Add(Bitmap.FromFile("C:\\MyLargeImage2.bmp"));
-
-            //Assign the ImageList objects to the ListView.
-            listView1.LargeImageList = imageListLarge;
-            listView1.SmallImageList = imageListSmall;
-
             // Add the ListView to the control collection.
             this.Controls.Add(listView1);
+        }
+
+        public event ItemDragEventHandler ItemDrag;
+        private static void ListView1_ItemDrag(Object sender, ItemDragEventArgs e)
+        {
+
+            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+            messageBoxCS.AppendFormat("{0} = {1}", "Button", e.Button);
+            messageBoxCS.AppendLine();
+            messageBoxCS.AppendFormat("{0} = {1}", "Item", e.Item);
+            messageBoxCS.AppendLine();
+            MessageBox.Show(messageBoxCS.ToString(), "ItemDrag Event");
+
         }
     }
 }
